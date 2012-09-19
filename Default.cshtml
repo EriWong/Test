@@ -1,0 +1,51 @@
+﻿@{
+
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>My Site's Title</title>
+        <link rel="stylesheet" type="text/css" href="~/Reset.css" />
+        <link rel="stylesheet/less" type="text/css" href="~/StyleSheet.less" />
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <script src="~/Scripts/less-1.2.2.js"></script>
+        <script src="Scripts/jquery-1.8.1.js"></script>
+        <script src="Scripts/mustache.js"></script>
+        <script type="text/html" id="ListItemTemplate">
+            {{#People}}
+            <li class="person">
+                <img src="{{Image}}" alt="{{alias}}" class="avatar" />
+                <div class="rightSide">
+                    <div>{{name}}</div>
+                    <span>{{points}}</span>
+                </div>
+            </li>
+            {{/People}}
+        </script>
+
+    </head>
+
+    <body>
+        <ol id="ListView"></ol>
+        <script>
+            $(function () {
+                var template = $('#ListItemTemplate').html();
+                var view =
+            {
+                People:
+                [
+                    { Image: "img", alias: "eriwong", name: "Eric Wong", points: 1 },
+                    { Image: "img", alias: "jimwa", name: "Jim Wang", points: 10 }
+                ]
+            };
+                $('#ListView').html(Mustache.to_html(template, view));
+            });
+
+
+        </script>
+
+    </body>
+</html>
